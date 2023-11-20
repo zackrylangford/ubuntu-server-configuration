@@ -41,8 +41,8 @@ sudo ln -sf /etc/nginx/sites-available/rtmp /etc/nginx/sites-enabled/rtmp
 
 # Execute stunnel.sh script to install and configure stunnel (if necessary)
 # Giving execute permissions to stunnel.sh
-#chmod +x stunnel.sh
-#./stunnel.sh "$domain_name"
+chmod +x stunnel.sh
+./stunnel.sh "$domain_name"
 
 # Update the Python script
 
