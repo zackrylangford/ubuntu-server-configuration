@@ -22,15 +22,15 @@ sudo chown -R ubuntu:ubuntu /home/ubuntu/livestream-archives
 
 # Copy the basic nginx.conf file into the proper directory
 # This should be a basic configuration without SSL settings
-sudo cp nginx.conf /etc/nginx/nginx.conf
+#sudo cp nginx.conf /etc/nginx/nginx.conf
 
 # Reload Nginx with the basic configuration
-sudo systemctl reload nginx
+#sudo systemctl reload nginx
 
 # Execute certbot.sh script to install Certbot and configure SSL
 # Giving execute permissions to certbot.sh
-chmod +x certbot.sh
-./certbot.sh "$domain_name"
+#chmod +x certbot.sh
+#./certbot.sh "$domain_name"
 
 # Update the Nginx configuration with SSL settings
 # This can be done by modifying the existing configuration or adding a new file in sites-available and then enabling it
@@ -41,11 +41,10 @@ chmod +x certbot.sh
 
 # Execute stunnel.sh script to install and configure stunnel (if necessary)
 # Giving execute permissions to stunnel.sh
-chmod +x stunnel.sh
-./stunnel.sh "$domain_name"
+#chmod +x stunnel.sh
+#./stunnel.sh "$domain_name"
 
 # Update the Python script
-
 
 # Update the Python script with the provided S3 bucket name
 sed -i "s/YOUR_BUCKET_NAME_HERE/$s3_bucket_name/g" upload_recording.py

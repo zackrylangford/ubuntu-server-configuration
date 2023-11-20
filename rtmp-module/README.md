@@ -37,3 +37,12 @@ sudo nginx -t
 
 ## Contributions
 Feel free to fork this repository and contribute to its development.
+
+
+
+# Updated steps
+It looks like you need to seperate the installs for now. So, 
+
+1. Run the install-nginx-rtmp.sh script
+2. Run the certbot.sh script
+3. Run the stunnel.sh script
