@@ -15,6 +15,19 @@ This repository contains scripts for setting up an RTMP module on Ubuntu servers
 1. Clone this repository on your Ubuntu server.
 2. Run `install-rtmp.sh` to start the installation process.
 3. Follow the on-screen prompts to complete the setup.
+4. Run a verification afterwards to make sure you are set up correctly:
+To verify that the RTMP module is running, run the following commands:
+```
+sudo systemctl status nginx 
+```
+To verify that Stunnel is running, run the following commands:
+```
+sudo systemctl status stunnel4
+```
+To verify nginx configuration, run the following command:
+```
+sudo nginx -t
+```
 
 ## Requirements
 - An Ubuntu server
