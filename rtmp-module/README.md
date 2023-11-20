@@ -32,11 +32,17 @@ sudo nginx -t
 ## Requirements
 - An Ubuntu server
 - A domain name (for SSL certification) pointed to the server IP address so that Certbot can verify the domain name
+- Proper security group settings that allow 443, 80, and 1935 open. 
 - Access to AWS for S3 uploads and permissions set up for your server to upload to S3(for `upload_recording.py`)
+
+## Notes
+- Verify that you don't have conflicts with /etc/nginx/sites-enabled/default and the newly written /etc/nginx/sites-enabled/rtmp file. Certbot automatically adds server configuration to the default file so you may need to comment it out or remove it from the sites-enabled directory in order to avoid conflicting server setups. 
 
 
 ## Contributions
 Feel free to fork this repository and contribute to its development.
+
+
 
 
 
