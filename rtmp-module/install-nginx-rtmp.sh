@@ -22,10 +22,10 @@ sudo chown -R ubuntu:ubuntu /home/ubuntu/livestream-archives
 
 # Copy the basic nginx.conf file into the proper directory
 # This should be a basic configuration without SSL settings
-#sudo cp nginx.conf /etc/nginx/nginx.conf
+sudo cp nginx.conf /etc/nginx/nginx.conf
 
 # Reload Nginx with the basic configuration
-#sudo systemctl reload nginx
+sudo systemctl reload nginx
 
 # Execute certbot.sh script to install Certbot and configure SSL
 # Giving execute permissions to certbot.sh
