@@ -29,8 +29,8 @@ sudo systemctl reload nginx
 
 # Execute certbot.sh script to install Certbot and configure SSL
 # Giving execute permissions to certbot.sh
-#chmod +x certbot.sh
-#./certbot.sh "$domain_name"
+chmod +x certbot.sh
+./certbot.sh "$domain_name"
 
 # Update the Nginx configuration with SSL settings
 # This can be done by modifying the existing configuration or adding a new file in sites-available and then enabling it
