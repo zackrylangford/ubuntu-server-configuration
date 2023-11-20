@@ -31,7 +31,9 @@ sudo nginx -t
 
 ## Requirements
 - An Ubuntu server
-- Access to AWS for S3 uploads (for `upload_recording.py`)
+- A domain name (for SSL certification) pointed to the server IP address so that Certbot can verify the domain name
+- Access to AWS for S3 uploads and permissions set up for your server to upload to S3(for `upload_recording.py`)
+
 
 ## Contributions
 Feel free to fork this repository and contribute to its development.
