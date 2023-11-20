@@ -27,11 +27,11 @@ chmod +x certbot.sh
 ./certbot.sh "$domain_name"
 
 # Dynamically update the rtmp.conf file with the provided server name
-sed -i "s/stream.example.com/$domain_name/g" rtmp
+#sed -i "s/stream.example.com/$domain_name/g" rtmp
 
 # Copy the RTMP configuration file to sites-enabled
 # Assuming rtmp.conf is in the current directory where the script is run
-sudo cp rtmp /etc/nginx/sites-enabled/rtmp
+#sudo cp rtmp /etc/nginx/sites-enabled/rtmp
 
 # Execute stunnel.sh script to install and configure stunnel
 # Giving execute permissions to stunnel.sh
