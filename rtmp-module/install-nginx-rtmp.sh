@@ -18,7 +18,10 @@ sudo mkdir -p /var/www/html/stream/hls
 sudo mkdir -p /var/www/html/stream/dash
 sudo mkdir -p /home/ubuntu/livestream-archives
 sudo chown -R www-data:www-data /var/www/html/stream
-sudo chown -R ubuntu:ubuntu /home/ubuntu/livestream-archives
+sudo chown -R www-data:www-data /home/ubuntu/livestream-archives
+
+# Disable the default Nginx site
+sudo rm -f /etc/nginx/sites-enabled/default
 
 # Copy the basic nginx.conf file into the proper directory
 # This should be a basic configuration without SSL settings
@@ -43,8 +46,6 @@ sudo ln -sf /etc/nginx/sites-available/rtmp /etc/nginx/sites-enabled/rtmp
 # Giving execute permissions to stunnel.sh
 chmod +x stunnel.sh
 ./stunnel.sh "$domain_name"
-
-# Update the Python script
 
 # Update the Python script with the provided S3 bucket name
 sed -i "s/YOUR_BUCKET_NAME_HERE/$s3_bucket_name/g" upload_recording.py
