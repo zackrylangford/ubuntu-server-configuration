@@ -35,9 +35,9 @@ chmod +x certbot.sh
 # Update the Nginx configuration with SSL settings
 # This can be done by modifying the existing configuration or adding a new file in sites-available and then enabling it
 # Assuming rtmp.conf is the SSL enabled configuration for the domain
-#sed -i "s/stream.example.com/$domain_name/g" rtmp.conf
-#sudo cp rtmp.conf /etc/nginx/sites-available/rtmp
-#sudo ln -sf /etc/nginx/sites-available/rtmp /etc/nginx/sites-enabled/rtmp
+sed -i "s/stream.example.com/$domain_name/g" rtmp.conf
+sudo cp rtmp.conf /etc/nginx/sites-available/rtmp
+sudo ln -sf /etc/nginx/sites-available/rtmp /etc/nginx/sites-enabled/rtmp
 
 # Execute stunnel.sh script to install and configure stunnel (if necessary)
 # Giving execute permissions to stunnel.sh
