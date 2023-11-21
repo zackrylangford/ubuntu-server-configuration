@@ -2,6 +2,10 @@
 
 # Prompt for custom domain name and S3 bucket name
 read -p "Enter the domain name (e.g., stream.example.com): " domain_name
+if [ -z "$domain_name" ]; then
+    echo "Error: No domain name provided."
+    exit 1
+fi
 read -p "Enter the S3 bucket name for uploads: " s3_bucket_name
 
 echo "Starting RTMP configuration script"
@@ -16,9 +20,10 @@ sudo pip3 install boto3
 # Create necessary directories
 sudo mkdir -p /var/www/html/stream/hls
 sudo mkdir -p /var/www/html/stream/dash
-sudo mkdir -p /home/ubuntu/livestream-archives
+sudo mkdir -p /var/www/livestream-archives
 sudo chown -R www-data:www-data /var/www/html/stream
-sudo chown -R www-data:www-data /home/ubuntu/livestream-archives
+sudo chown -R www-data:www-data /var/www/livestream-archives
+sudo chmod -R 775 /var/www/livestream-archives
 
 # Disable the default Nginx site
 sudo rm -f /etc/nginx/sites-enabled/default
@@ -38,7 +43,10 @@ chmod +x certbot.sh
 # Update the Nginx configuration with SSL settings
 # This can be done by modifying the existing configuration or adding a new file in sites-available and then enabling it
 # Assuming rtmp.conf is the SSL enabled configuration for the domain
-sed -i "s/stream.example.com/$domain_name/g" rtmp.conf
+cp rtmp.conf rtmp.conf.bak
+sed -i "/server_name/s/stream.example.com/$domain_name/" rtmp.conf
+sed -i "/ssl_certificate/s/stream.example.com/$domain_name/" rtmp.conf
+
 sudo cp rtmp.conf /etc/nginx/sites-available/rtmp
 sudo ln -sf /etc/nginx/sites-available/rtmp /etc/nginx/sites-enabled/rtmp
 
@@ -47,8 +55,15 @@ sudo ln -sf /etc/nginx/sites-available/rtmp /etc/nginx/sites-enabled/rtmp
 chmod +x stunnel.sh
 ./stunnel.sh "$domain_name"
 
-# Update the Python script with the provided S3 bucket name
-sed -i "s/YOUR_BUCKET_NAME_HERE/$s3_bucket_name/g" upload_recording.py
+# Update the script with the provided S3 bucket name for uploading
+sed -i "s/YOUR_BUCKET_NAME_HERE/$s3_bucket_name/g" upload_to_s3.sh
+
+# Copy the script to usr/local/bin and make it executable
+sudo cp upload_to_s3.sh /usr/local/bin/upload_to_s3.sh
+sudo chmod +x /usr/local/bin/upload_to_s3.sh
+
+# Install AWS CLI for uploading to S3
+sudo apt-get install awscli -y
 
 # Restart Nginx to apply new configuration
 sudo systemctl restart nginx
