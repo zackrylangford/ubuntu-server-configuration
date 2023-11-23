@@ -9,7 +9,7 @@ if [[ -f "$UPLOAD_DIR/$LATEST_FILE" ]]; then
     DATE_STR=$(date +"%m-%d-%Y")
 
     # Create the base new file name
-    BASE_NEW_FILE_NAME="${FILE_NAME}${DATE_STR}"
+    BASE_NEW_FILE_NAME="${FILE_NAME}-${DATE_STR}"
 
     # Initialize the full new file name
     NEW_FILE_NAME="${BASE_NEW_FILE_NAME}.flv"
