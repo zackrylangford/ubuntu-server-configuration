@@ -1,5 +1,6 @@
 UPLOAD_DIR="/var/www/livestream-archives"
 BUCKET_NAME="YOUR_BUCKET_NAME_HERE"
+FILE_NAME="YOUR_FILE_NAME_HERE"
 
 # Find the latest file in the directory
 LATEST_FILE=$(ls -Art $UPLOAD_DIR | tail -n 1)
@@ -8,7 +9,7 @@ if [[ -f "$UPLOAD_DIR/$LATEST_FILE" ]]; then
     DATE_STR=$(date +"%m-%d-%Y")
 
     # Create the base new file name
-    BASE_NEW_FILE_NAME="sunday-morning-worship-${DATE_STR}"
+    BASE_NEW_FILE_NAME="${FILE_NAME}${DATE_STR}"
 
     # Initialize the full new file name
     NEW_FILE_NAME="${BASE_NEW_FILE_NAME}.flv"
